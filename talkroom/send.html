@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <textarea name="mes" id="" cols="30" rows="10"></textarea>
+        <input type="button" value="send" onclick="sendMes()">
+    </form>
+</body>
+<script>
+     function sendMes(){
+          let form=document.getElementsByTagName('form')[0];
+          let fn=new FormData(form);
+
+          let xml=new XMLHttpRequest;
+          xml.open('POST','');
+          xml.send(fn);
+          xml.onreadystatechange=function(){
+              if(xml.status==200&&xml.readyState==4){
+                       alert(this.resonseText)
+              }
+          }
+      }
+</script>
+</html>

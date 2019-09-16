@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>聊天室</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-family: '宋体'
+        }
+        body{
+            overflow: hidden;
+        }
+    .main{
+        display: none;
+        width: 620px;
+        height: 740px;
+        position: absolute;
+        top: 2px;
+        left: 50%;
+        margin-left: -310px;
+        margin-top: 3px;
+        border-radius: 10px;
+        background: rgb(74, 75, 77);
+        padding: 2px;
+        box-shadow:2px 2px 3px 0px  rgb(187, 186, 186),-2px -2px 3px 0px rgb(179, 178, 178);
+    }
+    .box{
+        left: 50%;
+        margin:10px auto;
+        padding: 2px;
+        overflow: auto;
+        width: 600px;
+        height: 550px;
+        border-radius: 10px;
+        background: url(123.jpg)no-repeat 30%;
+            }
+     .box p{
+                margin-top: 5px;
+            }
+    .box hr{
+                background:#ccc;
+                
+            }
+            .box .name
+            {
+                color: rgb(33, 113, 233)
+            }
+            .box .time{
+                color: #ccc;
+                font-size: 13px;
+                text-align: right
+            }
+    /* #content{
+        width: 600px;
+        height: 550px;
+        border-radius: 10px;
+        background: white;
+    } */
+    .write{
+        border-radius: 10px;
+        background: white;
+        width: 600px;
+        height: 150px;
+    }
+    .textInput{
+        resize: none;
+        vertical-align: sub
+    }
+    .button{
+        width: 50px;
+
+    }
+    #leftNav{
+        width: 250px;
+        height: 550px;
+        margin: 100px 100px;
+        border-radius: 10px;
+        padding: 10px;
+        background: #EFF4F8;
+        border: 1px #ccc solid;
+    }
+    #leftNav input{
+        font-size: 15px;
+    display: block;
+    border: none;
+    cursor: pointer;
+    outline: none;
+     color: rgb(42, 130, 253);
+    width: 170px;
+    height: 30px;
+    margin: 10px auto;
+    background: none
+    }
+    .active{
+       transform: scale(1.5)
+    }
+    .talkBox{
+        width: 200px;
+        padding: 2px;
+        /* border: 1px solid; */
+        border-radius: 20px;
+        word-wrap:break-word;
+        line-height: 30px;
+        margin:0px 20px;
+        background: rgb(212, 217, 221)
+    }
+   
+    .sanjiao{
+        content: '';
+        position: relative;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-bottom: 10px solid rgb(212, 217, 221);
+        border-left: 10px solid rgb(212, 217, 221);
+        left: 35px;
+        top:0px
+    }
+    </style>
+</head>
+<body>
+     <div id="leftNav">
+            <p>hello! <span id="user">夏宇锋</span> </p>
+         <h3>聊天列表</h2>
+            <hr>
+        <input type="button" value="群聊"  class="active nav">
+        <input type="button" value="郭兴武" class="nav">
+        <input type="button" value="某某某" class="nav">
+     </div>
+    <div class="main" style="display:block">
+        <div class="box write">
+            <form class="inputMes">
+                <input type="text" value="群聊" name="群聊" disabled>
+                <textarea name="mes" class="textInput" cols="80" rows="10" ></textarea>
+                
+                <input type="button" class="button"  onclick="sendMes(0)" value="发送">
+            </form>
+        </div>
+    </div><div class="main">
+    <div class="box">
+        <p><span class="name">xxx</span> :<span class="time">&nbsp;&nbsp;&nbsp;2018.11.27 13：09</span><br>
+            <br><div class="sanjiao"></div> <div class="talkBox">我真的是菜!!</div> 
+        
+        </p>
+        <p>
+            <span class="name">yyy</span> :<span class="time">&nbsp;&nbsp;&nbsp;2018.11.27 13：10</span><br>
+            <br><div class="sanjiao"></div><div class="talkBox">我被你打击的想撞墙aaaaaaaaaaaaaaaaaaaaaaaaaa！</div>
+        </p>
+    </div>
+    <div  class="box write">
+        <form class="inputMes">
+            <textarea name="mes" class="textInput" cols="80" rows="10" ></textarea>
+            <input type="button" class="button"  onclick="sendMes(1)" value="发送">
+        </form>
+    </div>
+</div><div class="main">
+    
+<div  class="box">
+    <p><span class="name">btt</span> :<span class="time">&nbsp;&nbsp;&nbsp;2018.11.27 13：09</span><br>
+        <br><div class="sanjiao"></div> <div class="talkBox">我真的是菜!!</div> 
+    
+    </p>
+    <p>
+        <span class="name">xxx</span> :<span class="time">&nbsp;&nbsp;&nbsp;2018.11.27 13：10</span><br>
+        <br><div class="sanjiao"></div><div class="talkBox">我被你打击的想撞墙aaaaaaaaaaaaaaaaaaaaaaaaaa！</div>
+    </p>
+</div>
+<div  class="box write">
+    <form class="inputMes">
+        <textarea name="mes" class="textInput" cols="80" rows="10" ></textarea>
+        <input type="button" class="button" onclick="sendMes(2)" value="发送">
+    </form>
+</div>
+</div>
+</body>
+<script>
+       
+          let box=document.querySelectorAll('.content')[0];
+       
+          window.onload=function(){
+              show();
+              setInterval('show(0)',2000)
+          }
+        function show(x){
+            let box=document.querySelectorAll('.content')[x];
+           let xhr=new XMLHttpRequest;
+          
+           xhr.onreadystatechange=function(){
+               if(xhr.status==200&&xhr.readyState==4){
+                let user=JSON.parse(xhr.responseText);
+                    let mes='';
+                    for(var i=0;i<user.users.length;i++)
+                    {
+                        mes+=`<p>
+                        <span class="name">${user.users[i].name}</span> :<span class="time">&nbsp;&nbsp;&nbsp;${users[i].time}</span><br>
+                       <br><div class="sanjiao"></div> ${user.users[i].mes}<hr> 
+                        </p>`
+               }
+               box.innerHTML+=mes;
+           }
+       } 
+       xhr.open('GET','m');
+           xhr.send(null);
+    }
+      function sendMes(y){
+          let form=document.querySelectorAll('.inputMes')[y];
+          let fn=new FormData(form);
+          let xml=new XMLHttpRequest;
+          xml.open('POST','');
+          xml.send(fn);
+          xml.onreadystatechange=function(){
+              if(xml.status==200&&xml.readyState==4){
+                          alert('发送成功!');
+                     document.querySelectorAll('.textInput')[y].innerHTML=''
+
+              }
+          }
+      }
+
+      let nav=document.querySelectorAll('.nav');
+      let char=document.querySelectorAll('.main');
+      for(let i=0;i<nav.length;i++){
+          nav[i].onclick=function(){
+            show(i);
+              setInterval('show(i)',2000)
+              for(let j=0;j<nav.length;j++){
+                  nav[j].className='nav';
+                char[j].style.display='none';
+              }
+              this.className='active';
+              char[i].style.display='block';
+          }
+      }
+</script>
+</html>
